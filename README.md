@@ -58,7 +58,7 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
 ## 🖼️ Dashboard Preview
 
 ### Full Dashboard
-![Cohort Retention Rate](COHORT%20RETENTION%20RATE.png)
+![Cohort Retention Rate](COHORT%20RETENTION%20DASHBOARD.png)
 
 ### Cohort Retention Rate (Matrix in %)
 

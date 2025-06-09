@@ -12,7 +12,7 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
 | `Cohort Retention Analysis.sql`     | SQL script used to clean data and create cohort table |
 | `Cohort Retention.csv`              | Cleaned dataset exported from SQL for visualization  |
 | `COHORT RETENTION DASHBOARD.pbix`   | Power BI dashboard file                              |
-| `COHORT RETENTION ANALYSIS PIC.png` | Full screenshot of the Power BI dashboard            |
+| `COHORT RETENTION DASHBOARD.png`    | Full screenshot of the Power BI dashboard            |
 | `COHORT RETENTION RATE.png`         | Cohort Retention matrix in %                         |
 | `COHORT RETENTION TABLE.png`        | Cohort Retention matrix (counts)                     |
 | `Dashboard info.png`                | Info about the dashboard included in Power BI        |
@@ -59,19 +59,19 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
 
 ### Full Dashboard
 
-![Cohort Retention Rate](COHORT%20RETENTION%20ANALYSIS%20PIC.png)
+![Cohort Retention Rate](COHORT_RETENTION_DASHBOARD.png)
 
 ### Cohort Retention Rate (Matrix in %)
 
-![Cohort Retention Rate](COHORT%20RETENTION%20RATE.png)
+![Cohort Retention Rate](COHORT_RETENTION_RATE.png)
 
 ### Cohort Retention Table (Counts)
 
-![Cohort Retention Table](COHORT%20RETENTION%20TABLE.png)
+![Cohort Retention Table](COHORT_RETENTION_TABLE.png)
 
 ### Dashboard Info Panel
 
-![Dashboard Info](Dashboard%20info.png)
+![Dashboard Info](Dashboard_info.png)
 
 ---
 

@@ -56,6 +56,7 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
 ---
 
 ## 🖼️ Dashboard Preview
+[`Link to COHORT DASHBOARD`](https://app.powerbi.com/groups/me/reports/3ff024d6-bb51-455e-a68f-e7153090ea4c?ctid=319a61c8-ee1e-4161-8f35-b9553227afd7&pbi_source=linkShare)
 
 ### Full Dashboard
 

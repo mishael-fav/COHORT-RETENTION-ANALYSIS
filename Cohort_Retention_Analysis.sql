@@ -56,7 +56,7 @@ SELECT * FROM Online_retail_main ;
 -- 1: IDENTIFY CUSTOMER COHORTS
 -- =========================================
 
--- Determine each customer’s first purchase month (cohort month)
+-- Determine each customerâ€™s first purchase month (cohort month)
 SELECT 
     CustomerID,
     MIN(InvoiceDate) AS FirstPurchaseDate,

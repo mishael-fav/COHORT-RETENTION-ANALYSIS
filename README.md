@@ -1,21 +1,6 @@
 # Cohort Retention Analysis
 
-This project focuses on conducting a **Cohort Retention Analysis** to understand customer behavior over time, using the *Online Retail* dataset. The analysis was performed using **SQL** for data cleaning and preparation, and visualized using **Power BI**.
-
----
-
-## 📊 Project Files
-
-| File / Folder                       | Description                                          |
-|-------------------------------------|------------------------------------------------------|
-| `Online Retail`                     | Original dataset used for the project                |
-| `Cohort Retention Analysis.sql`     | SQL script used to clean data and create cohort table |
-| `Cohort Retention.csv`              | Cleaned dataset exported from SQL for visualization  |
-| `COHORT RETENTION DASHBOARD.pbix`   | Power BI dashboard file                              |
-| `COHORT RETENTION DASHBOARD.png`    | Full screenshot of the Power BI dashboard            |
-| `COHORT RETENTION RATE.png`         | Cohort Retention matrix in %                         |
-| `COHORT RETENTION TABLE.png`        | Cohort Retention matrix (counts)                     |
-| `Dashboard info.png`                | Info about the dashboard included in Power BI        |
+This project focuses on conducting a **Cohort Retention Analysis** to understand customer behavior over time, using the *Online Retail* dataset. The analysis was performed using **SQL** for data cleaning and preparation, and visualized using **Tableau**.
 
 ---
 
@@ -34,7 +19,51 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
 
 - The dataset was first cleaned using **SQL**:
     - Removed invalid records (null CustomerID, negative quantity/price).
-    - Deduplicated transactions.
+    ```sql
+    -- Filter out NULL CustomerIDs and add Revenue
+    SELECT 
+    InvoiceNo,
+    StockCode,
+    [Description],
+    Quantity,
+    InvoiceDate,
+    UnitPrice,
+    CustomerID,
+    Country,
+    (Quantity * UnitPrice) AS Revenue
+    INTO #Filtered_Retail
+    FROM Online_Retail
+    WHERE CustomerID IS NOT NULL;
+    ```
+    ```sql
+    -- Keep only valid transactions
+    SELECT *
+    INTO #Valid_Transactions
+    FROM #Filtered_Retail
+    WHERE Quantity > 0 AND UnitPrice > 0;
+    ```
+    - Remove duplicated transactions.
+    ```sql
+    SELECT *,
+       ROW_NUMBER() OVER (PARTITION BY InvoiceNo, StockCode, Quantity ORDER BY InvoiceDate) AS row_num
+    INTO #Duplicate_Transactions
+    FROM #Valid_Transactions;
+    ```
+    ```sql
+    SELECT  
+    InvoiceNo,
+    StockCode,
+    [Description],
+    Quantity,
+    InvoiceDate,
+    UnitPrice,
+    CustomerID,
+    Country,
+    Revenue
+    INTO Online_Retail_Main
+    FROM #Duplicate_Transactions
+    WHERE row_num = 1;
+    ```
     - Created a **Cohort Date** based on each customer's first purchase.
     - Created a **Cohort Index** to track retention by months since first purchase.
 
@@ -46,7 +75,7 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
 - **Cohort Index** = Number of months since first purchase.
 - The retention matrix was built showing how many customers remained active over each cohort period.
 
-### 3️⃣ Visualization in Power BI
+### 3️⃣ Visualization in Tableau
 
 - Built an **interactive dashboard** using:
     - Cohort Retention Table (Counts)

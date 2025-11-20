@@ -362,32 +362,27 @@ The Insight (From Stacked Bar Chart): Acquisition quality varies significantly b
 
 - Action 6: Adjust Promotional Spend: If a high-volume month (like Dec 2010) delivered low-quality customers, reduce or restructure promotional spending during that time next year. Shift budget towards the months that historically generated the highest-quality customer mix.
 
+---
 
+# 📚 Project Files
+
+- [Cohort_retention.sql](SQL_queries/cohort_retention.sql) → Cohort Retention Script
+- [Customer_Segmentation.sql](SQL_queries/Customer_Segmentation.sql) → RFM Segmentation script 
+- Tableau Dashboard → [Cohort | RFM_Dashboard](https://public.tableau.com/views/Cohort-RFMcombineddashboard/cohort-RFM?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+  
 ---
 
 ## 🚀 Tools Used
 
 - **SQL Server** (MS SQL) — Data cleaning & cohort table creation
-- **Power BI** — Data visualization & dashboard creation
+- **Tableau** — Data visualization & dashboard creation
 - **Excel** — Supporting analysis and data export/import
-
----
-
-## 📚 What is a Cohort?
-
-> A **cohort** is a group of users who share a common characteristic within a defined time period.  
-In this case, cohorts are defined based on each customer's **first purchase month**.
-
-**Cohort Retention Analysis** helps to analyze:
-- How long customers stay engaged.
-- The effectiveness of customer acquisition strategies.
-- Patterns in customer lifecycle.
 
 ---
 
 ## 🤝 Acknowledgements
 
-This project was completed as part of my Data Analysis portfolio, applying cohort analysis techniques using SQL and Power BI.
+This project was completed as part of my Data Analysis portfolio, applying cohort analysis techniques using SQL and Tableau.
 
 ---
 

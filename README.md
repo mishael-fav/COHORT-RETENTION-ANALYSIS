@@ -1,13 +1,26 @@
 # Cohort Retention Analysis
 
-This project focuses on conducting a **Cohort Retention Analysis** to understand customer behavior over time, using the *Online Retail* dataset. The analysis was performed using **SQL** for data cleaning and preparation, and visualized using **Tableau**.
+This project analyzes customer behavior to solve a critical retention challenge. By combining **Time-Series Analysis (Cohorts)** with **Value-Based Segmentation (RFM)**, I diagnosed a sharp drop in customer retention after the first month. The analysis revealed that while 75% of new customers churn immediately, the business model is sustained by a highly resilient "VIP" segment that generates 90%+ of total revenue.
+---
 
+## 🏢 Business Problem
+The business faced declining retention rates across 2011 cohorts compared to 2010 baselines. The goal was to answer two questions:
+1. **When** are customers leaving? (Retention Timing)
+2. **Who** are the customers leaving? (Quality of Acquisition)
+
+---
+
+## 🛠️ Solution Strategy
+I employed a dual-layer analytical approach:
+1. **Cohort Analysis:** To track retention rates of specific customer groups over a 12-month period.
+2. **RFM Segmentation:** To classify customers based on Recency, Frequency, and Monetary value to distinguish between "high-value churn" vs. "low-value churn."
+   
 ---
 
 ## 📌 Project Objectives
 
-- Understand customer purchasing behavior over time.
-- Categorize your custommers based on their purchases behaviour (RFM Analysis)
+- Understand customer purchasing behavior over time (Cohort Analysis).
+- Categorize your custommers based on their purchases behaviour (RFM Segmentation)
 - Analyze retention rates across different customer cohorts.
 - Visualize patterns and trends to support business decision-making.
 - Build a **Cohort Retention | RFM Analysis Dashboard** for interactive insights.
@@ -311,27 +324,33 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
 
 ---
 
-## 🖼️ Dashboard Preview
+
+## 🖼️ Dashboard Preview and insight 
 #### A Tableau dashboard used to visualize performance and test scenarios can be found here →[Link to COHORT | RFM DASHBOARD](https://public.tableau.com/views/Cohort-RFMcombineddashboard/cohort-RFM?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
 ### Cohort Retention Overview
 - This dashboard visualizes the lifecycle of customer engagement, highlighting a significant challenge in retaining customers after their initial interaction. The "Cohort Retention Rate" heatmap reveals a sharp drop-off, where retention across most cohorts falls below 30% immediately after the first month, suggesting that a large portion of customers do not return for a second purchase. While the December 2010 cohort is a notable outlier—generating the highest revenue ($570k in month 1) and maintaining strong retention (50% by month 12)—subsequent cohorts from 2011 show weaker acquisition numbers and faster churn rates, indicating a potential decline in marketing efficiency or product stickiness over time.
 
 ![Cohort Retention Overview](images/Cohort_retention_overview.png)
+* **Insight:** The December 2010 cohort was an outlier in performance (50% retention at Month 12). Subsequent cohorts (Jan 2011 - Oct 2011) show a significant dip in retention strength (<30% beyond Month 6), indicating a potential issue with recent acquisition channels or product market fit for newer users.
 
 ### RFM Segmentation Overview
 - This analysis categorizes customers based on value and behavior, revealing a heavy reliance on a specific high-value group. The "Customer Segment Distribution" shows that while "Lost Customers" are the most numerous group (1,340), they contribute very little financial value ($339k); conversely, "VIP Customers" generate the vast majority of total revenue ($6.2M) despite being fewer in number. The "Customer Segment Metrics" further illustrate that VIPs have a significantly higher average frequency (9.7 purchases) and average lifespan compared to the "At Risk" and "Lost" segments, confirming that the business model is currently sustained by deep engagement with a core group of power users rather than broad-based retention.
   
 ![RFM Segmentation](images/RFM_Segmentation.png)
+* **Insight:** The "Lost Customer" segment is the largest by volume (1,340 users) but contributes the least revenue ($339k).
+* **Value Driver:** The "VIP" segment, though smaller, generates **$6.2M** in revenue with an average of 9.7 purchases per user.
 
 ### Cohort | RFM Combined Insight Dashboard
 - This dashboard merges the previous two analyses to explain why the retention rates drop so sharply. The "Segment Contribution to Overall Retention Rate" area chart demonstrates that the steep drop after month one is caused almost entirely by the "Lost Customers" segment churning immediately, acting as a natural filter where only high-value customers remain. The "Distribution of Customer Lifespan Days" box plot validates this model, showing that the "Lost Customers" have near-zero tenure, whereas the long-tail retention curve seen in the earlier dashboards is supported exclusively by the "VIP" and "Loyal" segments, who maintain significantly longer lifespans.
 
 ![Cohort | RFM Combined Insight Dashboard](images/cohort_RFM.png)
+* **Insight:** Retention drops precipitously (approx. 75%) after the first month. However, the analysis proves this is a "natural filter." The customers dropping off are low-value, one-time purchasers.
+* **Validation:** The retention curve stabilizes after Month 2, supported almost exclusively by VIP and Loyal Customer segments.
 
 ---
 
-## 📈 Actionable Insights:
+## 📈 Actionable Insights from Cohort | RFM Combined Insight Dashboard:
 ________________
 ### 1. Retention & Onboarding (Focus: Index 1 →2) 
 The Insight (From Table & Area Chart): The most significant point of failure is the initial period. The total count of customers in the table drops drastically after Index 1, and the Retention Rate Area Chart shows a steep ≈ 75% loss of the initial cohort. This churn is heavily concentrated in the Lost Customers and At Risk categories. 

@@ -7,9 +7,10 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
 ## 📌 Project Objectives
 
 - Understand customer purchasing behavior over time.
+- Categorize your custommers based on their purchases behaviour (RFM Analysis)
 - Analyze retention rates across different customer cohorts.
 - Visualize patterns and trends to support business decision-making.
-- Build a **Cohort Retention Dashboard** for interactive insights.
+- Build a **Cohort Retention | RFM Analysis Dashboard** for interactive insights.
 
 ---
 
@@ -64,7 +65,7 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
     FROM #Duplicate_Transactions
     WHERE row_num = 1;
     ```
-- COHORT ANALYSIS
+### 2️⃣ COHORT ANALYSIS
     ```sql
     -- =========================================
     -- 1: IDENTIFY CUSTOMER COHORTS
@@ -129,7 +130,7 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
     ORDER BY CohortDate;
     ```
     ```sql
-   -- =========================================
+    -- =========================================
     -- 5: REVENUE ANALYSIS BY COHORT
     -- =========================================
     SELECT 
@@ -141,7 +142,9 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
     GROUP BY CohortDate, Cohort_Index
     ORDER BY CohortDate, Cohort_Index;
     ```
-- RFM Segmentation
+- Final Cohort dataset was exported [Cohort Retention](./Cohort_Retention.rar) for visualization.
+
+### 3️⃣ RFM Segmentation
     ```sql
     DECLARE @analysis_date DATE;
 
@@ -280,7 +283,7 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
     ORDER BY Action_Priority, TotalRevenue DESC;
     ```
     ```sql
-   -- ============================================================
+    -- ============================================================
     -- CUSTOMER SEGMENT DISTRIBUTION BY COHORT
     -- ============================================================
     SELECT 
@@ -302,41 +305,31 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
         END;
     ```
   
-- Final cleaned dataset was exported to `Cohort Retention.csv` for visualization.
-
-### 2️⃣ Cohort Analysis Logic
-
-- **Cohort Date** = The month of first purchase per customer.
-- **Cohort Index** = Number of months since first purchase.
-- The retention matrix was built showing how many customers remained active over each cohort period.
-
-### 3️⃣ Visualization in Tableau
-
-- Built an **interactive dashboard** using:
-    - Cohort Retention Table (Counts)
-    - Cohort Retention Rate Matrix (% Retention)
-    - Supporting visuals + Info panel
+- Final RFM dataset was exported to [RFM_Segment](./RFM_Segment.csv) for visualization.
 
 ---
 
 ## 🖼️ Dashboard Preview
-[`Link to COHORT DASHBOARD`](https://app.powerbi.com/groups/me/reports/3ff024d6-bb51-455e-a68f-e7153090ea4c?ctid=319a61c8-ee1e-4161-8f35-b9553227afd7&pbi_source=linkShare)
+[`Link to COHORT | RFM DASHBOARD`](https://public.tableau.com/views/Cohort-RFMcombineddashboard/cohort-RFM?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
-### Full Dashboard
+### Cohort Retention Overview
+#### This dashboard visualizes the lifecycle of customer engagement, highlighting a significant challenge in retaining customers after their initial interaction. The "Cohort Retention Rate" heatmap reveals a sharp drop-off, where retention across most cohorts falls below 30% immediately after the first month, suggesting that a large portion of customers do not return for a second purchase. While the December 2010 cohort is a notable outlier—generating the highest revenue ($570k in month 1) and maintaining strong retention (50% by month 12)—subsequent cohorts from 2011 show weaker acquisition numbers and faster churn rates, indicating a potential decline in marketing efficiency or product stickiness over time.
 
-![Cohort Retention Rate](COHORT_RETENTION_DASHBOARD.png)
+![Cohort Retention Overview](Cohort_retention_overview.png)
 
-### Cohort Retention Rate (Matrix in %)
+### RFM Segmentation
+- This analysis categorizes customers based on value and behavior, revealing a heavy reliance on a specific high-value group. The "Customer Segment Distribution" shows that while "Lost Customers" are the most numerous group (1,340), they contribute very little financial value ($339k); conversely, "VIP Customers" generate the vast majority of total revenue ($6.2M) despite being fewer in number. The "Customer Segment Metrics" further illustrate that VIPs have a significantly higher average frequency (9.7 purchases) and average lifespan compared to the "At Risk" and "Lost" segments, confirming that the business model is currently sustained by deep engagement with a core group of power users rather than broad-based retention.
+  
+![RFM Segmentation](RFM_Segmentation.png)
 
-![Cohort Retention Rate](COHORT_RETENTION_RATE.png)
+### COMBINED cohort | RFM Dashboard
+- This dashboard merges the previous two analyses to explain why the retention rates drop so sharply. The "Segment Contribution to Overall Retention Rate" area chart demonstrates that the steep drop after month one is caused almost entirely by the "Lost Customers" segment churning immediately, acting as a natural filter where only high-value customers remain. The "Distribution of Customer Lifespan Days" box plot validates this model, showing that the "Lost Customers" have near-zero tenure, whereas the long-tail retention curve seen in the earlier dashboards is supported exclusively by the "VIP" and "Loyal" segments, who maintain significantly longer lifespans.
 
-### Cohort Retention Table (Counts)
-
-![Cohort Retention Table](COHORT_RETENTION_TABLE.png)
+![COMBINED cohort | RFM Dashboard](cohort_RFM.png)
 
 ### Dashboard Info Panel
 
-![Dashboard Info](Dashboard_info.png)
+![cohort_RFM_info](cohort_RFM_info.png)
 
 ---
 

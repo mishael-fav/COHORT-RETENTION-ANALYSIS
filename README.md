@@ -25,9 +25,69 @@ I employed a dual-layer analytical approach:
 - Visualize patterns and trends to support business decision-making.
 - Build a **Cohort Retention | RFM Analysis Dashboard** for interactive insights.
 
+
 ---
 
-## 🗂 Methodology
+
+## 🖼️ Dashboard Preview and insight 
+#### A Tableau dashboard used to visualize performance and test scenarios can be found here →[Link to COHORT | RFM DASHBOARD](https://public.tableau.com/views/Cohort-RFMcombineddashboard/cohort-RFM?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+
+### Cohort Retention Overview
+- This dashboard visualizes the lifecycle of customer engagement, highlighting a significant challenge in retaining customers after their initial interaction. The "Cohort Retention Rate" heatmap reveals a sharp drop-off, where retention across most cohorts falls below 30% immediately after the first month, suggesting that a large portion of customers do not return for a second purchase. While the December 2010 cohort is a notable outlier—generating the highest revenue ($570k in month 1) and maintaining strong retention (50% by month 12)—subsequent cohorts from 2011 show weaker acquisition numbers and faster churn rates, indicating a potential decline in marketing efficiency or product stickiness over time.
+
+![Cohort Retention Overview](images/Cohort_retention_overview.png)
+* **Insight:** The December 2010 cohort was an outlier in performance (50% retention at Month 12). Subsequent cohorts (Jan 2011 - Oct 2011) show a significant dip in retention strength (<30% beyond Month 6), indicating a potential issue with recent acquisition channels or product market fit for newer users.
+
+### RFM Segmentation Overview
+- This analysis categorizes customers based on value and behavior, revealing a heavy reliance on a specific high-value group. The "Customer Segment Distribution" shows that while "Lost Customers" are the most numerous group (1,340), they contribute very little financial value ($339k); conversely, "VIP Customers" generate the vast majority of total revenue ($6.2M) despite being fewer in number. The "Customer Segment Metrics" further illustrate that VIPs have a significantly higher average frequency (9.7 purchases) and average lifespan compared to the "At Risk" and "Lost" segments, confirming that the business model is currently sustained by deep engagement with a core group of power users rather than broad-based retention.
+  
+![RFM Segmentation](images/RFM_Segmentation.png)
+* **Insight:** The "Lost Customer" segment is the largest by volume (1,340 users) but contributes the least revenue ($339k).
+* **Value Driver:** The "VIP" segment, though smaller, generates **$6.2M** in revenue with an average of 9.7 purchases per user.
+
+### Cohort | RFM Combined Insight Dashboard
+- This dashboard merges the previous two analyses to explain why the retention rates drop so sharply. The "Segment Contribution to Overall Retention Rate" area chart demonstrates that the steep drop after month one is caused almost entirely by the "Lost Customers" segment churning immediately, acting as a natural filter where only high-value customers remain. The "Distribution of Customer Lifespan Days" box plot validates this model, showing that the "Lost Customers" have near-zero tenure, whereas the long-tail retention curve seen in the earlier dashboards is supported exclusively by the "VIP" and "Loyal" segments, who maintain significantly longer lifespans.
+
+![Cohort | RFM Combined Insight Dashboard](images/cohort_RFM.png)
+* **Insight:** Retention drops precipitously (approx. 75%) after the first month. However, the analysis proves this is a "natural filter." The customers dropping off are low-value, one-time purchasers.
+* **Validation:** The retention curve stabilizes after Month 2, supported almost exclusively by VIP and Loyal Customer segments.
+
+---
+
+## 📈 Actionable Insights from Cohort | RFM Combined Insight Dashboard:
+________________
+### 1. Retention & Onboarding (Focus: Index 1 →2) 
+The Insight (From Table & Area Chart): The most significant point of failure is the initial period. The total count of customers in the table drops drastically after Index 1, and the Retention Rate Area Chart shows a steep ≈ 75% loss of the initial cohort. This churn is heavily concentrated in the Lost Customers and At Risk categories. 
+
+
+- Action 1: Overhaul Onboarding (Critical): Invest 80% of retention budget on the period immediately following the first purchase/activation. Implement a 7-day, 14-day, and 30-day outreach campaign specifically focused on driving the second transaction or achieving a core product milestone. 
+
+
+- Action 2: Re-evaluate Lost Customer Definition: Since 1,340 customers are immediately classified as "Lost" in Index 1, review the Recency threshold for new customers to allow more time (e.g., 60 days instead of 30) before labelling them lost, giving marketing a chance to intervene. 
+
+
+### 2. Segment Stability & Value Protection (Focus: Box Plot & Area Chart) 
+The Insight (From Box Plot & Table): Customers who transition to VIP and Loyal Customers are the most resilient group, possessing significantly longer median lifespans (≈180 to 290 days). This group is the sole engine driving stable retention after Index 2. 
+
+
+- Action 3: Implement Milestone Loyalty Program: Create an exclusive program for customers who reach Index 6 or Index 12. These customers are proven high-value and resilient. Offer unique perks or recognition to reinforce their loyalty and prevent even minor decay. 
+
+
+- Action 4: Proactive 'At Risk' Intervention: The At Risk segment is defined by a low median lifespan, but those who survive are valuable (Box Plot wide spread). Create a targeted win-back campaign for At Risk customers who have a Lifespan greater than the median (20 days) but whose Recency score has dropped. These are established customers worth saving. 
+
+
+### 3. Acquisition Quality & Seasonality (Focus: Stacked Bar Chart) 
+The Insight (From Stacked Bar Chart): Acquisition quality varies significantly by month. The December 2010 cohort, while having the highest volume, also has a high proportion of lower-value segments. Conversely, you can identify months with the highest proportion of the desirable VIP/Loyal segments (the colors that dominate the top of the bars). 
+
+
+- Action 5: Deconstruct High-Quality Cohorts: Identify the top 2-3 cohorts with the highest proportion of VIP and Loyal Customers (e.g., perhaps Jan or Feb 2011). Analyze the specific marketing channels, promotions, and product mix used during those months. Replicate those successful strategies in future acquisition efforts. 
+
+
+- Action 6: Adjust Promotional Spend: If a high-volume month (like Dec 2010) delivered low-quality customers, reduce or restructure promotional spending during that time next year. Shift budget towards the months that historically generated the highest-quality customer mix.
+
+---
+
+## 🗂 Methodology / Code Snippet
 
 ### 1️⃣ Data Cleaning and Preparation
 
@@ -321,65 +381,6 @@ I employed a dual-layer analytical approach:
 ```
   
 - Final RFM dataset was exported to [RFM_Segment](./RFM_Segment.csv) for visualization.
-
----
-
-
-## 🖼️ Dashboard Preview and insight 
-#### A Tableau dashboard used to visualize performance and test scenarios can be found here →[Link to COHORT | RFM DASHBOARD](https://public.tableau.com/views/Cohort-RFMcombineddashboard/cohort-RFM?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
-
-### Cohort Retention Overview
-- This dashboard visualizes the lifecycle of customer engagement, highlighting a significant challenge in retaining customers after their initial interaction. The "Cohort Retention Rate" heatmap reveals a sharp drop-off, where retention across most cohorts falls below 30% immediately after the first month, suggesting that a large portion of customers do not return for a second purchase. While the December 2010 cohort is a notable outlier—generating the highest revenue ($570k in month 1) and maintaining strong retention (50% by month 12)—subsequent cohorts from 2011 show weaker acquisition numbers and faster churn rates, indicating a potential decline in marketing efficiency or product stickiness over time.
-
-![Cohort Retention Overview](images/Cohort_retention_overview.png)
-* **Insight:** The December 2010 cohort was an outlier in performance (50% retention at Month 12). Subsequent cohorts (Jan 2011 - Oct 2011) show a significant dip in retention strength (<30% beyond Month 6), indicating a potential issue with recent acquisition channels or product market fit for newer users.
-
-### RFM Segmentation Overview
-- This analysis categorizes customers based on value and behavior, revealing a heavy reliance on a specific high-value group. The "Customer Segment Distribution" shows that while "Lost Customers" are the most numerous group (1,340), they contribute very little financial value ($339k); conversely, "VIP Customers" generate the vast majority of total revenue ($6.2M) despite being fewer in number. The "Customer Segment Metrics" further illustrate that VIPs have a significantly higher average frequency (9.7 purchases) and average lifespan compared to the "At Risk" and "Lost" segments, confirming that the business model is currently sustained by deep engagement with a core group of power users rather than broad-based retention.
-  
-![RFM Segmentation](images/RFM_Segmentation.png)
-* **Insight:** The "Lost Customer" segment is the largest by volume (1,340 users) but contributes the least revenue ($339k).
-* **Value Driver:** The "VIP" segment, though smaller, generates **$6.2M** in revenue with an average of 9.7 purchases per user.
-
-### Cohort | RFM Combined Insight Dashboard
-- This dashboard merges the previous two analyses to explain why the retention rates drop so sharply. The "Segment Contribution to Overall Retention Rate" area chart demonstrates that the steep drop after month one is caused almost entirely by the "Lost Customers" segment churning immediately, acting as a natural filter where only high-value customers remain. The "Distribution of Customer Lifespan Days" box plot validates this model, showing that the "Lost Customers" have near-zero tenure, whereas the long-tail retention curve seen in the earlier dashboards is supported exclusively by the "VIP" and "Loyal" segments, who maintain significantly longer lifespans.
-
-![Cohort | RFM Combined Insight Dashboard](images/cohort_RFM.png)
-* **Insight:** Retention drops precipitously (approx. 75%) after the first month. However, the analysis proves this is a "natural filter." The customers dropping off are low-value, one-time purchasers.
-* **Validation:** The retention curve stabilizes after Month 2, supported almost exclusively by VIP and Loyal Customer segments.
-
----
-
-## 📈 Actionable Insights from Cohort | RFM Combined Insight Dashboard:
-________________
-### 1. Retention & Onboarding (Focus: Index 1 →2) 
-The Insight (From Table & Area Chart): The most significant point of failure is the initial period. The total count of customers in the table drops drastically after Index 1, and the Retention Rate Area Chart shows a steep ≈ 75% loss of the initial cohort. This churn is heavily concentrated in the Lost Customers and At Risk categories. 
-
-
-- Action 1: Overhaul Onboarding (Critical): Invest 80% of retention budget on the period immediately following the first purchase/activation. Implement a 7-day, 14-day, and 30-day outreach campaign specifically focused on driving the second transaction or achieving a core product milestone. 
-
-
-- Action 2: Re-evaluate Lost Customer Definition: Since 1,340 customers are immediately classified as "Lost" in Index 1, review the Recency threshold for new customers to allow more time (e.g., 60 days instead of 30) before labelling them lost, giving marketing a chance to intervene. 
-
-
-### 2. Segment Stability & Value Protection (Focus: Box Plot & Area Chart) 
-The Insight (From Box Plot & Table): Customers who transition to VIP and Loyal Customers are the most resilient group, possessing significantly longer median lifespans (≈180 to 290 days). This group is the sole engine driving stable retention after Index 2. 
-
-
-- Action 3: Implement Milestone Loyalty Program: Create an exclusive program for customers who reach Index 6 or Index 12. These customers are proven high-value and resilient. Offer unique perks or recognition to reinforce their loyalty and prevent even minor decay. 
-
-
-- Action 4: Proactive 'At Risk' Intervention: The At Risk segment is defined by a low median lifespan, but those who survive are valuable (Box Plot wide spread). Create a targeted win-back campaign for At Risk customers who have a Lifespan greater than the median (20 days) but whose Recency score has dropped. These are established customers worth saving. 
-
-
-### 3. Acquisition Quality & Seasonality (Focus: Stacked Bar Chart) 
-The Insight (From Stacked Bar Chart): Acquisition quality varies significantly by month. The December 2010 cohort, while having the highest volume, also has a high proportion of lower-value segments. Conversely, you can identify months with the highest proportion of the desirable VIP/Loyal segments (the colors that dominate the top of the bars). 
-
-
-- Action 5: Deconstruct High-Quality Cohorts: Identify the top 2-3 cohorts with the highest proportion of VIP and Loyal Customers (e.g., perhaps Jan or Feb 2011). Analyze the specific marketing channels, promotions, and product mix used during those months. Replicate those successful strategies in future acquisition efforts. 
-
-
-- Action 6: Adjust Promotional Spend: If a high-volume month (like Dec 2010) delivered low-quality customers, reduce or restructure promotional spending during that time next year. Shift budget towards the months that historically generated the highest-quality customer mix.
 
 ---
 

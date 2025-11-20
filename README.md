@@ -66,7 +66,9 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
     WHERE row_num = 1;
     ```
 ### 2️⃣ COHORT ANALYSIS
-    ```sql
+
+- Cohort Analysis
+  ```sql
     -- =========================================
     -- 1: IDENTIFY CUSTOMER COHORTS
     -- =========================================
@@ -80,7 +82,7 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
     
     SELECT *
     FROM #CustomerCohort;
-    ```
+  ```
     ```sql
     -- =========================================
     -- 2: BUILD COHORT INDEX (MONTH DIFFERENCE)

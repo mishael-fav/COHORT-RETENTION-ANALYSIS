@@ -147,7 +147,7 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
 - Final Cohort dataset was exported [Cohort Retention](./Cohort_Retention.rar) for visualization.
 
 ### 3️⃣ RFM Segmentation
-    ```sql
+```sql
     DECLARE @analysis_date DATE;
 
     SELECT @analysis_date = MAX(InvoiceDate) 
@@ -305,7 +305,7 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
             WHEN 'At Risk' THEN 4
             WHEN 'Lost Customers' THEN 5
         END;
-    ```
+```
   
 - Final RFM dataset was exported to [RFM_Segment](./RFM_Segment.csv) for visualization.
 

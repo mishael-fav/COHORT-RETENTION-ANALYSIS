@@ -3,7 +3,9 @@
 ---
 
 ## 📑 Executive Summary
+
 This project analyzes customer behavior to solve a critical retention challenge. By combining **Time-Series Analysis (Cohorts)** with **Value-Based Segmentation (RFM)**, I diagnosed a sharp drop in customer retention after the first month. The analysis revealed that while 75% of new customers churn immediately, the business model is sustained by a highly resilient "VIP" segment that generates 90%+ of total revenue.
+
 ---
 
 ## 🏢 Business Problem

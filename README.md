@@ -240,8 +240,8 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
     
     SELECT *
     FROM RFM_Segments_Final;
-    ```
-    ```sql
+```
+```sql
     -- ============================================================
     -- SUMMARY STATISTICS BY SEGMENT
     -- ============================================================
@@ -283,8 +283,8 @@ This project focuses on conducting a **Cohort Retention Analysis** to understand
         AvgMonetaryScore
     FROM SegmentStats
     ORDER BY Action_Priority, TotalRevenue DESC;
-    ```
-    ```sql
+```
+```sql
     -- ============================================================
     -- CUSTOMER SEGMENT DISTRIBUTION BY COHORT
     -- ============================================================

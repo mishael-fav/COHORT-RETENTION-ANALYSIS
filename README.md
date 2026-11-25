@@ -181,7 +181,7 @@ Customer attrition is heavily concentrated in the immediate post-purchase window
 | **Potential Customers** | 355 | \$168,103 | 1.7 | \$474 | \$366.00 | 14 | 71.0 |
 | **Lost Customers** | 1,340 | \$339,921 | 1.1 | \$254 | \$234.60 | 157 | 13.8 |
 
-![Customer Segment Distribution](images/cs.png)
+![Customer Segment Distribution](images/cs5.png)
 
 **Business Implication:**
 
@@ -197,7 +197,7 @@ Allocating uniform retention spend across all customer tiers ignores dramatic di
   * **The Month-1 Natural Filter Effect:** Between `Cohort Index 1` and `Index 2`, `Lost Customers` plunge from **1,340 to 23** (an immediate **98.3% exit**), and `At Risk` buyers drop from **883 to 200**. Once this initial wave of one-time shoppers exits, **VIP and Loyal customers become the sole engine sustaining retention**, with `VIP Customers` retaining **563 active buyers at Index 2** and holding above **500 active buyers** through `Index 10`.
   * **Lifespan Box-Plot Separation:** `CustomerLifespanDays` distributions confirm stark behavioral divergence across tiers—`Lost Customers` cluster at near-zero tenure (**13.8-day mean**), `At Risk` accounts exhibit a wide spread (**104.8-day mean**, **~20-day median**), and `VIP` and `Loyal` buyers sustain extended interquartile lifespans spanning roughly **180 to 290+ days**.
 
-![Segment Contribution to Overall Retention Rate by Tenure](images/combined.png)
+![Segment Contribution to Overall Retention Rate by Tenure](images/combined3.png)
 
 **Business Implication:**
 
@@ -213,7 +213,7 @@ Integrating Cohort and RFM views clarifies that the 75% Month-1 churn rate funct
   * **High Volume with High VIP Yield (`December 2010`):** December 2010 acquired both the largest initial cohort (**885 buyers**) and the largest absolute core of long-term **VIP Customers (476 buyers, or 53.8% of the cohort)**—generating over **\$4.3M in cumulative cohort revenue**—even though it also included a sizable block of one-time `Lost` and `At Risk` shoppers.
   * **2011 Volume Contraction & Quality Shift:** Monthly acquisition volume declined steadily from Q1 through Q3 2011 (bottoming out in August 2011), while the relative proportion of `Lost` and `At Risk` buyers expanded. In October and November 2011, total cohort volume rebounded alongside a surge in newly acquired `Potential` and `Loyal` buyers.
 
-![Cohort Volume and Customer Segment Distribution](images/aq.png)
+![Cohort Volume and Customer Segment Distribution](images/aq4.png)
 
 
 **Business Implication:**

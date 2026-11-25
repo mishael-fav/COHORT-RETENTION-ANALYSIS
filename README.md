@@ -8,10 +8,6 @@
 
 [View the interactive Tableau Cohort | RFM Dashboard](https://public.tableau.com:9443/views/Cohort-RFMcombineddashboard/Cohortretentionoverview?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) | [Cohort Retention SQL Script](SQL_queries/cohort_retention.sql) | [RFM Segmentation SQL Script](SQL_queries/Customer_Segmentation.sql)
 
-<p align="center">
-  <img src="images/cr6.png" alt="Monthly Cohort Retention Percentage Heatmap (Index 1–12)" width="1500">
-</p>
-
 
 ## Table of Contents
 
@@ -198,6 +194,10 @@ Allocating uniform retention spend across all customer tiers ignores dramatic di
   * **Lifespan Box-Plot Separation:** `CustomerLifespanDays` distributions confirm stark behavioral divergence across tiers—`Lost Customers` cluster at near-zero tenure (**13.8-day mean**), `At Risk` accounts exhibit a wide spread (**104.8-day mean**, **~20-day median**), and `VIP` and `Loyal` buyers sustain extended interquartile lifespans spanning roughly **180 to 290+ days**.
 
 ![Segment Contribution to Overall Retention Rate by Tenure](images/combined3.png)
+
+<p align="center">
+  <img src="images/combined3.png" alt="Monthly Cohort Retention Percentage Heatmap (Index 1–12)" height="500">
+</p>
 
 **Business Implication:**
 

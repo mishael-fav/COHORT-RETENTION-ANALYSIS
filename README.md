@@ -50,15 +50,79 @@ Rather than assuming all churn carries equal financial impact, this investigatio
 
 [Back to Table of Contents](#table-of-contents)
 
-## 3. Dataset Overview & Data Hygiene
+### 3. Data Structure & Table Lineage
 
-The SQL pipeline cleans the raw `Online_Retail` table and structures it into analytical datasets for Tableau visualization:
+The T-SQL pipeline transforms raw e-commerce transaction logs (`Online_Retail`) into two structured analytical datasets—separating longitudinal cohort retention tracking from customer-level RFM behavioral profiles across **4,297 unique buyers** and **\$8.36M in net revenue** (`December 2010 – November 2011`).
 
-| Table / Output | Grain | Data Cleaning & Engineering Rules |
-| :--- | :--- | :--- |
-| `Online_Retail_Main` | Invoice line-item level | Calculated `Revenue = Quantity * UnitPrice`; removed records with `CustomerID IS NULL`, cancellations/returns (`Quantity <= 0`), non-positive prices (`UnitPrice <= 0`), and duplicate invoice lines (`ROW_NUMBER() = 1`) |
-| `Cohort_Retention` | Customer × Transaction × Cohort Index | Assigned each buyer's first purchase month as `CohortDate` and computed `Cohort_Index` (`1` to `12`); excluded December 2011 (`NOT (YEAR(InvoiceDate) = 2011 AND MONTH(InvoiceDate) = 12)`) to avoid incomplete-month truncation |
-| `RFM_Segments_Final` | One row per unique `CustomerID` (**4,297 total customers**; **3,886 displayed in Index-1 cohort matrix**) | Calculated `Recency` (days from latest invoice date `2011-11-30`), `Frequency` (`COUNT(DISTINCT InvoiceNo)`), `Monetary` (`SUM(Revenue)`), `CustomerLifespanDays`, and quintile scores via `NTILE(5)` |
+```text
+Online_Retail (Raw Invoice Logs)
+       │
+       ▼  [Deduplication + Null/Return Removal + Dec 2011 Cutoff]
+       ├──► Cohort_Retention (Cleaned Line-Item Lifecycle & Cohort Index 1–12)
+       │
+       └──► RFM_Segments_Final (4,297 Unique Customer Behavioral Profiles)
+```
+
+| Dataset Name | Grain | Analytical Role | 
+| :--- | :--- | :--- | 
+| **`Online_Retail`** | One row per raw invoice line item *(uncleaned source)* | Source UK-based e-commerce transaction log spanning Dec 2010 – Dec 2011 (`8` base columns). | 
+| **`Cohort_Retention`** | One row per valid, deduplicated invoice line item (`Dec 2010 – Nov 2011`) | Standardized transaction and tenure table linking every purchase to `CohortDate` and `Cohort_Index` (`1`–`12`), excluding incomplete Dec 2011 records (`15` total columns). | 
+| **`RFM_Segments_Final`** | One row per unique `CustomerID` *(4,297 total customers)* | Consolidates lifetime behavioral metrics, `NTILE(5)` quintile scores, and assigned tiers (`VIP`, `Loyal`, `Potential`, `At Risk`, `Lost`) anchored to cutoff `2011-11-30` (`20` total columns). | 
+
+### Data Dictionary
+
+#### 1. `Online_Retail` *(Raw Source Transactions)*
+**Grain:** One row per raw invoice line item (uncleaned).
+
+| Column Name | Data Type | Description | Example | 
+| :--- | :--- | :--- | :--- | 
+| **`InvoiceNo`** | Integer / String | Unique 6-digit transaction identifier assigned to each order. *(Prefix `'C'` in raw logs indicates cancellations prior to cleaning.)* | `536365` | 
+| **`StockCode`** | String | Unique alphanumeric product SKU code identifying the purchased item. | `85123A` | 
+| **`Description`** | String | Product name or item description associated with the `StockCode`. | `WHITE HANGING HEART T-LIGHT HOLDER` | 
+| **`Quantity`** | Integer | Number of units of the product ordered per invoice line item. | `6` | 
+| **`InvoiceDate`** | DateTime | Date and timestamp when the transaction was generated. | `01/12/2010 08:26` | 
+| **`UnitPrice`** | Float | Product price per single unit in reporting currency. | `2.55` | 
+| **`CustomerID`** | Integer | Unique 5-digit identifier assigned to each registered customer. | `17850` | 
+| **`Country`** | String | Country where the customer is located. | `United Kingdom` | 
+
+#### 2. `Cohort_Retention` *(Cleaned Line-Item Lifecycle & Cohort Table)*
+**Grain:** One row per valid, deduplicated invoice line item (`Dec 2010 – Nov 2011`). Inherits all 8 base columns from `Online_Retail` plus 7 engineered lifecycle fields:
+
+| Column Name | Data Type | Description | Example | 
+| :--- | :--- | :--- | :--- | 
+| **`Revenue`** | Float | Calculated line-item net revenue (`Quantity × UnitPrice`). | `5.80` | 
+| **`CohortDate`** | Date | First day of the month in which the customer made their initial purchase. | `2010-12-01` | 
+| **`Invoice_Year`** | Integer | Calendar year extracted from `InvoiceDate` (`2010` or `2011`). | `2010` | 
+| **`Invoice_Month`** | Integer | Calendar month (`1`–`12`) extracted from `InvoiceDate`. | `12` | 
+| **`Cohort_Year`** | Integer | Acquisition year extracted from `CohortDate`. | `2010` | 
+| **`Cohort_Month`** | Integer | Acquisition month (`1`–`12`) extracted from `CohortDate`. | `12` | 
+| **`Cohort_Index`** | Integer | Months elapsed since the customer's first purchase (`1` = acquisition month, `2` = second month, up to `12`). | `1` | 
+
+#### 3. `RFM_Segments_Final` *(Customer-Level Behavioral & RFM Summary)*
+**Grain:** One row per unique `CustomerID` (`4,297` customers; anchored to reporting cutoff `2011-11-30`).
+
+| Column Name | Data Type | Description | Example | 
+| :--- | :--- | :--- | :--- | 
+| **`CustomerID`** | Integer | Primary key identifying each unique buyer. | `14646` | 
+| **`Customer_Segment`** | String | Behavioral tier assigned from RFM scores: `VIP Customers`, `Loyal Customers`, `Potential Customers`, `At Risk`, or `Lost Customers`. | `VIP Customers` | 
+| **`Action_Priority`** | Integer | Numeric CRM intervention rank (`1` = highest priority retention/win-back tier). | `1` | 
+| **`Recency`** | Integer | Days elapsed between the customer's `LastPurchaseDate` and the reporting cutoff (`2011-11-30`). | `7` | 
+| **`Frequency`** | Integer | Total count of distinct completed orders (`COUNT(DISTINCT InvoiceNo)`). | `70` | 
+| **`Monetary`** | Float | Cumulative net revenue generated by the customer (`SUM(Revenue)`). | `268478.00` | 
+| **`R_Score`** | Integer | Recency quintile score (`1`–`5`, where `5` = most recent buyer). | `5` | 
+| **`F_Score`** | Integer | Frequency quintile score (`1`–`5`, where `5` = highest order count). | `5` | 
+| **`M_Score`** | Integer | Monetary quintile score (`1`–`5`, where `5` = highest total spend). | `5` | 
+| **`RFM_Score`** | Integer | Composite RFM sum (`R_Score + F_Score + M_Score`, ranging from `3` to `15`). | `15` | 
+| **`AvgOrderValue`** | Float | Average spend per distinct order (`Monetary / Frequency`). | `3835.40` | 
+| **`PurchaseFrequency`** | Float | Purchase velocity rate (`Frequency / CustomerLifespanDays`). | `0.21` | 
+| **`CustomerLifespanDays`** | Integer | Total days between `FirstPurchaseDate` and `LastPurchaseDate` (`0` for single-day buyers). | `339` | 
+| **`AvgDaysBetweenOrders`** | Float | Mean inter-purchase interval in days across repeat orders. | `4.91` | 
+| **`UniqueProducts`** | Integer | Count of distinct product SKUs (`StockCode`) purchased by the customer. | `680` | 
+| **`TotalQuantity`** | Integer | Total cumulative unit volume purchased across all orders. | `188957` | 
+| **`Cohort_Year`** | Integer | Year of the customer's first recorded purchase (`2010` or `2011`). | `2010` | 
+| **`Cohort_Month`** | Integer | Month of the customer's first recorded purchase (`1`–`12`). | `12` | 
+| **`FirstPurchaseDate`** | DateTime | Timestamp of the customer's earliest completed invoice. | `2010-12-20 10:09:00` | 
+| **`LastPurchaseDate`** | DateTime | Timestamp of the customer's most recent completed invoice. | `2011-11-23 11:06:00` | 
 
 [Back to Table of Contents](#table-of-contents)
 

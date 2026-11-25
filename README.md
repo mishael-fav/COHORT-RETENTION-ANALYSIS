@@ -64,7 +64,7 @@ Online_Retail (Raw Invoice Logs)
        └──► RFM_Segments_Final (4,297 Unique Customer Behavioral Profiles)
 ```
 
-| Dataset Name | Grain | Analytical Role | 
+| Dataset Name | Grain | Analytical Role | Example |
 | :--- | :--- | :--- | 
 | **`Online_Retail`** | One row per raw invoice line item *(uncleaned source)* | Source UK-based e-commerce transaction log spanning Dec 2010 – Dec 2011 (`8` base columns). | 
 | **`Cohort_Retention`** | One row per valid, deduplicated invoice line item (`Dec 2010 – Nov 2011`) | Standardized transaction and tenure table linking every purchase to `CohortDate` and `Cohort_Index` (`1`–`12`), excluding incomplete Dec 2011 records (`15` total columns). | 
@@ -75,7 +75,7 @@ Online_Retail (Raw Invoice Logs)
 #### 1. `Online_Retail` *(Raw Source Transactions)*
 **Grain:** One row per raw invoice line item (uncleaned).
 
-| Column Name | Data Type | Description |
+| Column Name | Data Type | Description | Example |
 | :--- | :--- | :--- | :--- | 
 | **`InvoiceNo`** | Integer / String | Unique 6-digit transaction identifier assigned to each order. *(Prefix `'C'` in raw logs indicates cancellations prior to cleaning.)* |
 | **`StockCode`** | String | Unique alphanumeric product SKU code identifying the purchased item. |
@@ -89,7 +89,7 @@ Online_Retail (Raw Invoice Logs)
 #### 2. `Cohort_Retention` *(Cleaned Line-Item Lifecycle & Cohort Table)*
 **Grain:** One row per valid, deduplicated invoice line item (`Dec 2010 – Nov 2011`). Inherits all 8 base columns from `Online_Retail` plus 7 engineered lifecycle fields:
 
-| Column Name | Data Type | Description |
+| Column Name | Data Type | Description | Example |
 | :--- | :--- | :--- | :--- | 
 | **`Revenue`** | Float | Calculated line-item net revenue (`Quantity × UnitPrice`). |
 | **`CohortDate`** | Date | First day of the month in which the customer made their initial purchase. |

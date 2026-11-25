@@ -268,9 +268,9 @@ To ensure disciplined interpretation of these results, four dataset limitations 
 | [Interactive Tableau Dashboard](https://public.tableau.com/views/Cohort-RFMcombineddashboard/cohort-RFM?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) | Three-dashboard interactive workbook covering Cohort Retention Overview, RFM Segmentation Overview, and Combined Cohort-RFM Insights |
 | [Cohort Retention SQL Script](SQL_queries/cohort_retention.sql) | T-SQL data cleaning, `ROW_NUMBER()` deduplication, cohort index construction, `PIVOT` retention tables, CLV, and churn queries |
 | [RFM Segmentation SQL Script](SQL_queries/Customer_Segmentation.sql) | T-SQL `NTILE(5)` quintile scoring, segment classification, `@AtRiskRevenue` calculation, and ML feature export |
-| [Cohort retention Charts](images/cohort_retention.png) | `Cohort Retention.png` |
-| [RFM segmentation Charts](images/RFM_segmentation.png) | `RFM Segmentation.png` |
-| [cohort RFM Charts](images/cohort_RFM.png) | `cohort RFM.png` |
+| [Cohort retention Dashboard](images/cohort_retention.png) | `Cohort Retention.png` |
+| [RFM segmentation Dashboard](images/RFM_segmentation.png) | `RFM Segmentation.png` |
+| [cohort RFM Dashboard](images/cohort_RFM.png) | `cohort RFM.png` |
 
 **Primary tools:** Microsoft SQL Server (T-SQL), Tableau Public, Microsoft Excel
 

@@ -103,7 +103,7 @@ Online_Retail (Raw Invoice Logs)
 **Grain:** One row per unique `CustomerID` (`4,297` customers; anchored to reporting cutoff `2011-11-30`).
 
 | Column Name | Data Type | Description |
-| :--- | :--- | :--- | :--- | 
+| :--- | :--- | :--- | 
 | **`CustomerID`** | Integer | Primary key identifying each unique buyer. |
 | **`Customer_Segment`** | String | Behavioral tier assigned from RFM scores: `VIP Customers`, `Loyal Customers`, `Potential Customers`, `At Risk`, or `Lost Customers`. |
 | **`Action_Priority`** | Integer | Numeric CRM intervention rank (`1` = highest priority retention/win-back tier). |

@@ -196,7 +196,7 @@ Allocating uniform retention spend across all customer tiers ignores dramatic di
 ![Segment Contribution to Overall Retention Rate by Tenure](images/combined3.png)
 
 <p align="center">
-  <img src="images/combined3.png" alt="Monthly Cohort Retention Percentage Heatmap (Index 1–12)" height="500">
+  <img src="images/combined3.png" alt="Monthly Cohort Retention Percentage Heatmap (Index 1–12)" height="300">
 </p>
 
 **Business Implication:**

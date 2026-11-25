@@ -9,11 +9,9 @@
 [View the interactive Tableau Cohort | RFM Dashboard](https://public.tableau.com:9443/views/Cohort-RFMcombineddashboard/Cohortretentionoverview?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) | [Cohort Retention SQL Script](SQL_queries/cohort_retention.sql) | [RFM Segmentation SQL Script](SQL_queries/Customer_Segmentation.sql)
 
 <p align="center">
-  <img src="images/cohort_retention_heatmap.png" alt="Monthly Cohort Retention Percentage Heatmap (Index 1–12)" width="850">
+  <img src="images/images/cr.png" alt="Monthly Cohort Retention Percentage Heatmap (Index 1–12)" width="850">
 </p>
-<p align="center">
-  <img src="images/cohort_retention_curves.png" alt="12-Month Customer Retention Rate Curves by Acquisition Cohort" width="850">
-</p>
+
 
 ## Table of Contents
 

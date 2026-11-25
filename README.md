@@ -75,7 +75,7 @@ Online_Retail (Raw Invoice Logs)
 #### 1. `Online_Retail` *(Raw Source Transactions)*
 **Grain:** One row per raw invoice line item (uncleaned).
 
-| Column Name | Data Type | Description | Example | 
+| Column Name | Data Type | Description |
 | :--- | :--- | :--- | :--- | 
 | **`InvoiceNo`** | Integer / String | Unique 6-digit transaction identifier assigned to each order. *(Prefix `'C'` in raw logs indicates cancellations prior to cleaning.)* |
 | **`StockCode`** | String | Unique alphanumeric product SKU code identifying the purchased item. |
@@ -89,7 +89,7 @@ Online_Retail (Raw Invoice Logs)
 #### 2. `Cohort_Retention` *(Cleaned Line-Item Lifecycle & Cohort Table)*
 **Grain:** One row per valid, deduplicated invoice line item (`Dec 2010 – Nov 2011`). Inherits all 8 base columns from `Online_Retail` plus 7 engineered lifecycle fields:
 
-| Column Name | Data Type | Description | Example | 
+| Column Name | Data Type | Description |
 | :--- | :--- | :--- | :--- | 
 | **`Revenue`** | Float | Calculated line-item net revenue (`Quantity × UnitPrice`). |
 | **`CohortDate`** | Date | First day of the month in which the customer made their initial purchase. |
@@ -102,7 +102,7 @@ Online_Retail (Raw Invoice Logs)
 #### 3. `RFM_Segments_Final` *(Customer-Level Behavioral & RFM Summary)*
 **Grain:** One row per unique `CustomerID` (`4,297` customers; anchored to reporting cutoff `2011-11-30`).
 
-| Column Name | Data Type | Description | Example | 
+| Column Name | Data Type | Description |
 | :--- | :--- | :--- | :--- | 
 | **`CustomerID`** | Integer | Primary key identifying each unique buyer. |
 | **`Customer_Segment`** | String | Behavioral tier assigned from RFM scores: `VIP Customers`, `Loyal Customers`, `Potential Customers`, `At Risk`, or `Lost Customers`. |
@@ -268,9 +268,9 @@ To ensure disciplined interpretation of these results, four dataset limitations 
 | [Interactive Tableau Dashboard](https://public.tableau.com/views/Cohort-RFMcombineddashboard/cohort-RFM?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) | Three-dashboard interactive workbook covering Cohort Retention Overview, RFM Segmentation Overview, and Combined Cohort-RFM Insights |
 | [Cohort Retention SQL Script](SQL_queries/cohort_retention.sql) | T-SQL data cleaning, `ROW_NUMBER()` deduplication, cohort index construction, `PIVOT` retention tables, CLV, and churn queries |
 | [RFM Segmentation SQL Script](SQL_queries/Customer_Segmentation.sql) | T-SQL `NTILE(5)` quintile scoring, segment classification, `@AtRiskRevenue` calculation, and ML feature export |
-| [Dashboard 1 Charts](images/) | `combined_cohort_retention.png` and `avg_revenue_by_tenure.png` |
-| [Dashboard 2 Charts](images/) | `customer_segment_distribution.png` and `customer_segment_metrics.png` |
-| [Dashboard 3 Charts](images/) | `segment_retention_area.png`, `customer_lifespan_boxplot.png`, `cohort_volume_segment_mix.png`, and `cohort_revenue_by_segment.png` |
+| [Cohort retention Charts](images/cohort_retention.png) | `Cohort Retention.png` |
+| [RFM segmentation Charts](images/RFM_segmentation.png) | `RFM Segmentation.png` |
+| [cohort RFM Charts](images/cohort_RFM.png) | `cohort RFM.png` |
 
 **Primary tools:** Microsoft SQL Server (T-SQL), Tableau Public, Microsoft Excel
 

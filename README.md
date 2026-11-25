@@ -155,7 +155,7 @@ Each analytical stage isolates a core behavioral question, presents the quantita
   * **December 2010 Benchmark vs. 2011 Cohorts:** The **December 2010 cohort** (885 initial buyers) retained **37% at Index 2** and rebounded to **50.3% by Index 12**, sustaining **\$570,125 in Month 1** and **\$511,804 in Month 12**. By contrast, 8 of the 11 subsequent 2011 cohorts dropped below **30% retention** within six months.
   * **Tenure Spend Expansion (`+132.1%`):** Although active headcount shrinks after Month 1, average revenue per active retained customer more than doubles across tenure—climbing from **\$516 in Month 1** to **\$1,198 by Month 12** as repeat buyers place larger, more frequent orders.
 
-![Combined Cohort Retention Heatmap](images/cr.png)
+![Combined Cohort Retention Heatmap](images/cr6.png)
 
 **Business Implication:**
 

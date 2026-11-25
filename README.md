@@ -169,6 +169,8 @@ Customer attrition is heavily concentrated in the immediate post-purchase window
   * **High-AOV Lapsed Revenue Pool (`At Risk`):** Accounting for **883 buyers** and **\$1,138,788 in historical revenue** (**\$1,290 average spend**), `At Risk` accounts record the **highest Average Order Value (\$592.90)** across all segments and **2.8 average orders**, but have lapsed to **154 days recency**—making them the highest-ROI target for reactivation.
   * **Growth & Mid-Tier Pipeline (`Loyal` & `Potential`):** `Loyal Customers` (**526 buyers**, **\$476,621 revenue**, **3.0 orders**, **169.7-day lifespan**) provide steady mid-tier cash flow, while `Potential Customers` (**355 buyers**, **\$168,103 revenue**, **1.7 orders**, **14-day recency**) represent recent multi-order buyers primed for conversion into the Loyal/VIP tiers.
 
+![Customer Segment Distribution](images/cs5.png)
+
 | Customer Segment | Customer Count | Total Revenue | Avg. Orders | Avg. Monetary | Avg. Order Value | Avg. Recency (Days) | Avg. Lifespan (Days) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **VIP Customers** | 1,193 | \$6,238,561 | 9.7 | \$5,229 | \$470.50 | 19 | 266.3 |
@@ -176,8 +178,6 @@ Customer attrition is heavily concentrated in the immediate post-purchase window
 | **Loyal Customers** | 526 | \$476,621 | 3.0 | \$906 | \$348.80 | 28 | 169.7 |
 | **Potential Customers** | 355 | \$168,103 | 1.7 | \$474 | \$366.00 | 14 | 71.0 |
 | **Lost Customers** | 1,340 | \$339,921 | 1.1 | \$254 | \$234.60 | 157 | 13.8 |
-
-![Customer Segment Distribution](images/cs5.png)
 
 **Business Implication:**
 

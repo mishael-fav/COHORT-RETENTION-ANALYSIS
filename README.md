@@ -36,7 +36,7 @@ By combining **time-based Cohort Retention analysis** with **RFM (Recency, Frequ
 
 ## 2. Business Problem & Analytical Scope
 
-Across **4,297 unique customers** and **\$8.36 million in net revenue** (December 2010 – November 2011), aggregate revenue figures conceal steep early-stage customer attrition. While the **December 2010 cohort** demonstrated strong long-term durability—retaining **50.3%** of its initial 885 buyers by Month 12—subsequent 2011 cohorts experienced sharper post-purchase drop-offs, frequently falling below 30% retention within six months.
+Across **4,297 unique customers** and **\$8.36 million in net revenue** (December 2010 – November 2011), aggregate revenue figures conceal steep early-stage customer attrition. While the **December 2010 cohort** demonstrated strong long-term durability retaining **50.3%** of its initial 885 buyers by Month 12, subsequent 2011 cohorts experienced sharper post-purchase drop-offs, frequently falling below 30% retention within six months.
 
 Rather than assuming all churn carries equal financial impact, this investigation uses transactional invoice records (`InvoiceNo`, `StockCode`, `Description`, `Quantity`, `InvoiceDate`, `UnitPrice`, `CustomerID`, `Country`) to answer four core diagnostic questions:
 
@@ -53,7 +53,7 @@ Rather than assuming all churn carries equal financial impact, this investigatio
 
 ### 3. Data Structure & Table Lineage
 
-The T-SQL pipeline transforms raw e-commerce transaction logs (`Online_Retail`) into two structured analytical datasets—separating longitudinal cohort retention tracking from customer-level RFM behavioral profiles across **4,297 unique buyers** and **\$8.36M in net revenue** (`December 2010 – November 2011`).
+The T-SQL pipeline transforms raw e-commerce transaction logs (`Online_Retail`) into two structured analytical datasets separating longitudinal cohort retention tracking from customer-level RFM behavioral profiles across **4,297 unique buyers** and **\$8.36M in net revenue** (`December 2010 – November 2011`).
 
 ```text
 Online_Retail (Raw Invoice Logs)
@@ -131,7 +131,7 @@ Online_Retail (Raw Invoice Logs)
 
 Retention analysis reveals an immediate post-purchase drop-off: approximately **75% of newly acquired customers do not return after their first purchase month (`Cohort Index 1` to `Index 2`)**. While the **December 2010 cohort** generated **\$570,125 in Month 1** and retained **50.3% of its cohort by Month 12 (\$511,804)**, 8 of the 11 subsequent cohorts from January to October 2011 fell below **30% retention** after Month 6.
 
-Combining RFM segmentation with cohort tenure explains why total revenue remained concentrated despite high headline attrition. **Lost Customers** represent the largest group in the cohort matrix (**1,340 customers**) but generate only **\$339,921** in revenue, averaging **1.1 orders**, **\$254 in spend**, and a **13.8-day lifespan**. In contrast, **VIP Customers (1,193 users)** generate **\$6,238,561**—roughly three-quarters of total revenue—averaging **9.7 orders**, **\$5,229 in spend**, **19 days recency**, and a **266.3-day lifespan**.
+Combining RFM segmentation with cohort tenure explains why total revenue remained concentrated despite high headline attrition. **Lost Customers** represent the largest group in the cohort matrix (**1,340 customers**) but generate only **\$339,921** in revenue, averaging **1.1 orders**, **\$254 in spend**, and a **13.8-day lifespan**. In contrast, **VIP Customers (1,193 users)** generate **\$6,238,561** roughly three-quarters of total revenue averaging **9.7 orders**, **\$5,229 in spend**, **19 days recency**, and a **266.3-day lifespan**.
 
 **Decision:** Prioritize CRM retention efforts within the **first 30 days after a buyer's initial purchase (`Index 1` to `Index 2`)**, protect the **1,193 VIP Customers** driving \$6.24M in revenue through tenure milestones, and deploy targeted win-back outreach to the **883 At-Risk buyers** representing \$1.14M in historical spend.
 
@@ -147,9 +147,9 @@ Each analytical stage isolates a core behavioral question, presents the quantita
 
 * **Key Findings:**
   * **The Steep Month-1 Drop-Off:** Across 2011 cohorts, retention plunges from **100% at Index 1** to an average of **23.7% at Index 2** (ranging between **15% and 24%** across individual 2011 cohorts), confirming that roughly three-quarters of new buyers fail to make a second-month purchase.
-  * **Post-Month-2 Stabilization:** Once buyers survive past `Index 2`, attrition flattens considerably—retention rates stabilize within a **20% to 35% band** through `Index 10` rather than continuing to decay linearly.
+  * **Post-Month-2 Stabilization:** Once buyers survive past `Index 2`, attrition flattens considerably, retention rates stabilize within a **20% to 35% band** through `Index 10` rather than continuing to decay linearly.
   * **December 2010 Benchmark vs. 2011 Cohorts:** The **December 2010 cohort** (885 initial buyers) retained **37% at Index 2** and rebounded to **50.3% by Index 12**, sustaining **\$570,125 in Month 1** and **\$511,804 in Month 12**. By contrast, 8 of the 11 subsequent 2011 cohorts dropped below **30% retention** within six months.
-  * **Tenure Spend Expansion (`+132.1%`):** Although active headcount shrinks after Month 1, average revenue per active retained customer more than doubles across tenure—climbing from **\$516 in Month 1** to **\$1,198 by Month 12** as repeat buyers place larger, more frequent orders.
+  * **Tenure Spend Expansion (`+132.1%`):** Although active headcount shrinks after Month 1, average revenue per active retained customer more than doubles across tenure, climbing from **\$516 in Month 1** to **\$1,198 by Month 12** as repeat buyers place larger, more frequent orders.
 
 ![Combined Cohort Retention Heatmap](images/cr6.png)
 
@@ -164,9 +164,9 @@ Customer attrition is heavily concentrated in the immediate post-purchase window
 * **Question:** Is this 75% Month-1 churn eroding the core revenue base, or are the customers leaving primarily low-value, one-time buyers?
 
 * **Key Findings:**
-  * **Extreme VIP Revenue Concentration (`VIP Customers`):** Comprising **27.8% of the customer base (1,193 buyers)**, VIPs generate **\$6,238,561**—accounting for **74.6% of total company revenue** (**\$5,229 average spend**). They purchase **3.2× more frequently** than Loyal buyers (**9.7 orders**), maintain an average recency of **19 days**, and stay active for an average lifespan of **266.3 days**.
-  * **High-Volume, Low-Value Churn (`Lost Customers`):** Representing the single largest segment by headcount (**1,340 buyers**, or **31.2% of customers**), `Lost Customers` contribute only **\$339,921** (**4.1% of revenue**), averaging just **1.1 orders**, **\$254 total spend**, **157 days recency**, and a **13.8-day lifespan**—proving that headline churn is dominated by one-time transactional shoppers.
-  * **High-AOV Lapsed Revenue Pool (`At Risk`):** Accounting for **883 buyers** and **\$1,138,788 in historical revenue** (**\$1,290 average spend**), `At Risk` accounts record the **highest Average Order Value (\$592.90)** across all segments and **2.8 average orders**, but have lapsed to **154 days recency**—making them the highest-ROI target for reactivation.
+  * **Extreme VIP Revenue Concentration (`VIP Customers`):** Comprising **27.8% of the customer base (1,193 buyers)**, VIPs generate **\$6,238,561** accounting for **74.6% of total company revenue** (**\$5,229 average spend**). They purchase **3.2× more frequently** than Loyal buyers (**9.7 orders**), maintain an average recency of **19 days**, and stay active for an average lifespan of **266.3 days**.
+  * **High-Volume, Low-Value Churn (`Lost Customers`):** Representing the single largest segment by headcount (**1,340 buyers**, or **31.2% of customers**), `Lost Customers` contribute only **\$339,921** (**4.1% of revenue**), averaging just **1.1 orders**, **\$254 total spend**, **157 days recency**, and a **13.8-day lifespan** proving that headline churn is dominated by one-time transactional shoppers.
+  * **High-AOV Lapsed Revenue Pool (`At Risk`):** Accounting for **883 buyers** and **\$1,138,788 in historical revenue** (**\$1,290 average spend**), `At Risk` accounts record the **highest Average Order Value (\$592.90)** across all segments and **2.8 average orders**, but have lapsed to **154 days recency** making them the highest-ROI target for reactivation.
   * **Growth & Mid-Tier Pipeline (`Loyal` & `Potential`):** `Loyal Customers` (**526 buyers**, **\$476,621 revenue**, **3.0 orders**, **169.7-day lifespan**) provide steady mid-tier cash flow, while `Potential Customers` (**355 buyers**, **\$168,103 revenue**, **1.7 orders**, **14-day recency**) represent recent multi-order buyers primed for conversion into the Loyal/VIP tiers.
 
 ![Customer Segment Distribution](images/cs5.png)
@@ -181,7 +181,7 @@ Customer attrition is heavily concentrated in the immediate post-purchase window
 
 **Business Implication:**
 
-Allocating uniform retention spend across all customer tiers ignores dramatic differences in unit economics. The business relies on **VIP and Loyal customers**—whose high order frequency (3.0 to 9.7 orders) and extended lifespans generate the vast majority of cash flow. Broad discounting aimed at **Lost Customers** (1.1 average orders, \$254 total spend) targets low-engagement buyers with minimal lifetime value, whereas targeted win-back campaigns for **At Risk** buyers (\$1,290 average spend, \$592.90 AOV) focus directly on recovering proven high-ticket accounts before they lapse permanently.
+Allocating uniform retention spend across all customer tiers ignores dramatic differences in unit economics. The business relies on **VIP and Loyal customers** whose high order frequency (3.0 to 9.7 orders) and extended lifespans generate the vast majority of cash flow. Broad discounting aimed at **Lost Customers** (1.1 average orders, \$254 total spend) targets low-engagement buyers with minimal lifetime value, whereas targeted win-back campaigns for **At Risk** buyers (\$1,290 average spend, \$592.90 AOV) focus directly on recovering proven high-ticket accounts before they lapse permanently.
 
 ---
 
@@ -191,7 +191,7 @@ Allocating uniform retention spend across all customer tiers ignores dramatic di
 
 * **Key Findings:**
   * **The Month-1 Natural Filter Effect:** Between `Cohort Index 1` and `Index 2`, `Lost Customers` plunge from **1,340 to 23** (an immediate **98.3% exit**), and `At Risk` buyers drop from **883 to 200**. Once this initial wave of one-time shoppers exits, **VIP and Loyal customers become the sole engine sustaining retention**, with `VIP Customers` retaining **563 active buyers at Index 2** and holding above **500 active buyers** through `Index 10`.
-  * **Lifespan Box-Plot Separation:** `CustomerLifespanDays` distributions confirm stark behavioral divergence across tiers—`Lost Customers` cluster at near-zero tenure (**13.8-day mean**), `At Risk` accounts exhibit a wide spread (**104.8-day mean**, **~20-day median**), and `VIP` and `Loyal` buyers sustain extended interquartile lifespans spanning roughly **180 to 290+ days**.
+  * **Lifespan Box-Plot Separation:** `CustomerLifespanDays` distributions confirm stark behavioral divergence across tiers, `Lost Customers` cluster at near-zero tenure (**13.8-day mean**), `At Risk` accounts exhibit a wide spread (**104.8-day mean**, **~20-day median**), and `VIP` and `Loyal` buyers sustain extended interquartile lifespans spanning roughly **180 to 290+ days**.
 
 ![Segment Contribution to Overall Retention Rate by Tenure](images/combined4.png)
 
@@ -206,7 +206,7 @@ Integrating Cohort and RFM views clarifies that the 75% Month-1 churn rate funct
 * **Question:** How does the mix of VIP, Loyal, and Lost buyers vary across different acquisition months?
 
 * **Key Findings:**
-  * **High Volume with High VIP Yield (`December 2010`):** December 2010 acquired both the largest initial cohort (**885 buyers**) and the largest absolute core of long-term **VIP Customers (476 buyers, or 53.8% of the cohort)**—generating over **\$4.3M in cumulative cohort revenue**—even though it also included a sizable block of one-time `Lost` and `At Risk` shoppers.
+  * **High Volume with High VIP Yield (`December 2010`):** December 2010 acquired both the largest initial cohort (**885 buyers**) and the largest absolute core of long-term **VIP Customers (476 buyers, or 53.8% of the cohort)** generating over **\$4.3M in cumulative cohort revenue** even though it also included a sizable block of one-time `Lost` and `At Risk` shoppers.
   * **2011 Volume Contraction & Quality Shift:** Monthly acquisition volume declined steadily from Q1 through Q3 2011 (bottoming out in August 2011), while the relative proportion of `Lost` and `At Risk` buyers expanded. In October and November 2011, total cohort volume rebounded alongside a surge in newly acquired `Potential` and `Loyal` buyers.
 
 ![Cohort Volume and Customer Segment Distribution](images/aq5.png)
@@ -247,7 +247,7 @@ Evaluate monthly acquisition cohorts using **Index-3 retention and VIP/Loyal sha
 To ensure disciplined interpretation of these results, four dataset limitations must be noted:
 
 1. **Right-Censoring of Late-2011 Cohorts:** Cohorts acquired in October and November 2011 have only 1 to 2 observable months prior to the dataset cutoff (`2011-11-30`), meaning their long-term retention and VIP conversion cannot yet be fully observed.
-2. **No Marketing Attribution or Cost Data:** The `Online_Retail` dataset contains transactional invoice fields (`InvoiceNo`, `StockCode`, `Quantity`, `UnitPrice`, `InvoiceDate`, `CustomerID`, `Country`) but lacks acquisition channel tags, ad spend, and product COGS—preventing direct CAC or net-margin LTV calculations.
+2. **No Marketing Attribution or Cost Data:** The `Online_Retail` dataset contains transactional invoice fields (`InvoiceNo`, `StockCode`, `Quantity`, `UnitPrice`, `InvoiceDate`, `CustomerID`, `Country`) but lacks acquisition channel tags, ad spend, and product COGS preventing direct CAC or net-margin LTV calculations.
 3. **Mixed B2B Wholesale and B2C Retail Orders:** High average order values in the `At Risk` (\$592.90) and `VIP` (\$470.50) segments suggest the presence of bulk wholesale buyers alongside individual retail consumers, which can influence order frequency and recency distributions.
 4. **Relative Quintile Scoring (`NTILE(5)`):** Because `NTILE(5)` partitions customers into equal 20% buckets relative to this specific dataset, fixed business-rule thresholds (exact day cutoffs and spend tiers) should be validated before deploying automated CRM triggers.
 
